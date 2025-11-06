@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华中“娃”偶doll only</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .activity-banner { height: 300px; background: url('https://picsum.photos/id/1062/1920/300') center/cover; }
+        .ticket-card { transition: transform 0.3s; }
+        .ticket-card:hover { transform: translateY(-5px); }
+        .text-primary { color: #e63946 !important; } /* 改为醒目红色，突出票价 */
+        .btn-primary { background-color: #e63946; border: none; }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand text-primary fw-bold fs-2" href="#">华中“娃”偶doll only</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#activity">活动详情</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tickets">立即报名</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#orders">我的订单</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 活动Banner -->
+    <section class="activity-banner d-flex align-items-center justify-content-center text-white">
+        <div class="text-center bg-black bg-opacity-50 p-5 rounded">
+            <h1 class="fs-3 fw-bold">华中“娃”偶doll only</h1>
+            <p class="mt-2">2026-02-10 ~ 2026-02-11 | 武汉·华中会展中心</p>
+            <p class="mt-1">华中地区最大规模娃偶主题活动 | 票价¥399限时报名</p>
+        </div>
+    </section>
+
+    <!-- 活动详情 -->
+    <section id="activity" class="py-8 container">
+        <h2 class="text-center text-primary fw-bold mb-6">活动详情</h2>
+        <div class="row gap-6">
+            <div class="col-md-4 text-center">
+                <h5 class="fw-bold">时间</h5>
+                <p class="text-muted">2026-02-10 ~ 2026-02-11（周末两日）</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h5 class="fw-bold">地点</h5>
+                <p class="text-muted">中国·武汉·华中会展中心（地铁2号线直达）</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h5 class="fw-bold">活动亮点</h5>
+                <p class="text-muted">主题展区 | 娃偶交流 | 限定周边 | 互动体验</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 购票区域（票价已改为¥399） -->
+    <section id="tickets" class="py-8 bg-light">
+        <div class="container">
+            <h2 class="text-center text-primary fw-bold mb-6">立即报名（限时票价¥399）</h2>
+            <div class="row gap-4 justify-content-center">
+                <div class="col-md-5 ticket-card card shadow-sm p-4">
+                    <h5 class="card-title text-primary fw-bold">华中“娃”偶doll only</h5>
+                    <p class="card-text">两日通票（含所有展区+互动体验）</p>
+                    <p class="text-primary fw-bold fs-4">¥399</p>
+                    <button class="btn btn-primary w-100 mt-3" onclick="openBuyModal()">立即购票</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我的订单 -->
+    <section id="orders" class="py-8 container">
+        <h2 class="text-center text-primary fw-bold mb-6">我的订单</h2>
+        <div id="orderList" class="row">
+            <div class="col-12 text-center py-8 text-muted" id="noOrder">
+                暂无订单，快去选购门票吧～
+            </div>
+        </div>
+    </section>
+
+    <!-- 购票模态框 -->
+    <div class="modal fade" id="buyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary">华中“娃”偶doll only 购票</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="buyForm">
+                        <div class="mb-3">
+                            <label class="form-label">购票数量</label>
+                            <input type="number" class="form-control" id="ticketNum" min="1" value="1">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">联系人</label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">联系电话</label>
+                            <input type="tel" class="form-control" id="contactPhone" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">确认购票（¥399/张）</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
