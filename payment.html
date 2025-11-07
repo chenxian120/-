@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>购票系统</title>
+<style>
+/* 核心弹窗样式（极简无冗余） */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 300px;
+}
+.qrcode {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 15px;
+}
+.close-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #eee;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<!-- 购票按钮 -->
+<button onclick="document.getElementById('orderModal').style.display='flex'" 
+        style="padding:10px 20px; background:#ff4444; color:white; border:none; border-radius:4px; cursor:pointer;">
+  立即购票
+</button>
+
+<!-- 订单确认弹窗（价格已改为399元） -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <h3>订单确认</h3>
+    <p>票价：399元</p>
+    <button onclick="document.getElementById('orderModal').style.display='none'; document.getElementById('wechatModal').style.display='flex'">微信支付</button>
+    <button onclick="document.getElementById('orderModal').style.display='none'; document.getElementById('alipayModal').style.display='flex'">支付宝支付</button>
+  </div>
+</div>
+
+<!-- 微信支付弹窗（完整Base64） -->
+<div id="wechatModal" class="modal">
+  <div class="modal-content">
+    <h3>微信支付</h3>
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJYBjAMBIgACEQEDEQH/xAAcAAABAAAAAAAABAAAAAQADAAgEDAgQFBgcICQoL/xAC1AAABAwMDAwUFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALIRAAMBAQEBAQEBAQEBAQAAAAAAAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+ijK" 
+         class="qrcode" alt="微信支付">
+    <p>请使用微信扫描支付</p>
+    <button class="close-btn" onclick="document.getElementById('wechatModal').style.display='none'">关闭</button>
+  </div>
+</div>
+
+<!-- 支付宝支付弹窗（完整Base64） -->
+<div id="alipayModal" class="modal">
+  <div class="modal-content">
+    <h3>支付宝支付</h3>
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJYBjAMBIgACEQEDEQH/xAAcAAABAAAAAAAABAAAAAQADAAgEDAgQFBgcICQoL/xAC1AAABAwMDAwUFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALIRAAMBAQEBAQEBAQEBAQAAAAAAAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+ijK" 
+         class="qrcode" alt="支付宝支付">
+    <p>请使用支付宝扫描支付</p>
+    <button class="close-btn" onclick="document.getElementById('alipayModal').style.display='none'">关闭</button>
+  </div>
+</div>
+</body>
+</html>
