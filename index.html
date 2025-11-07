@@ -1,116 +1,101 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>华中“娃”偶doll only</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .activity-banner { height: 300px; background: url('https://picsum.photos/id/1062/1920/300') center/cover; }
-        .ticket-card { transition: transform 0.3s; }
-        .ticket-card:hover { transform: translateY(-5px); }
-        .text-primary { color: #e63946 !important; } /* 改为醒目红色，突出票价 */
-        .btn-primary { background-color: #e63946; border: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页 - 购票系统</title>
+<style>
+/* 首页基础样式 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", sans-serif; background: #f5f5f5; }
+.header { background: #333; color: white; padding: 20px 0; text-align: center; }
+.header h1 { font-size: 28px; margin-bottom: 10px; }
+.header p { font-size: 16px; opacity: 0.8; }
+.banner { width: 100%; height: 300px; background: #ff4444; display: flex; align-items: center; justify-content: center; color: white; margin: 20px 0; }
+.banner h2 { font-size: 32px; text-align: center; padding: 0 20px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section { background: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.section h3 { font-size: 22px; margin-bottom: 20px; color: #333; }
+.section p { font-size: 16px; line-height: 1.8; color: #666; margin-bottom: 20px; }
+/* 购票模块专属样式（内联+前缀隔离，无冲突） */
+.tps_btn { padding: 15px 30px; background: #ff4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 10px 0; }
+.tps_modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 99999; text-align: center; padding-top: 100px; }
+.tps_modal-content { background: white; max-width: 300px; margin: 0 auto; padding: 25px; border-radius: 8px; }
+.tps_qrcode { width: 220px; height: 220px; margin: 0 auto 15px; display: block; }
+.tps_close-btn { padding: 10px 25px; background: #eee; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+.tps_pay-btn { padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; margin: 0 8px 15px; }
+</style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand text-primary fw-bold fs-2" href="#">华中“娃”偶doll only</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#activity">活动详情</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#tickets">立即报名</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#orders">我的订单</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- 首页头部 -->
+<header class="header">
+  <h1>欢迎访问官方购票平台</h1>
+  <p>便捷购票 · 安心支付 · 优质体验</p>
+</header>
 
-    <!-- 活动Banner -->
-    <section class="activity-banner d-flex align-items-center justify-content-center text-white">
-        <div class="text-center bg-black bg-opacity-50 p-5 rounded">
-            <h1 class="fs-3 fw-bold">华中“娃”偶doll only</h1>
-            <p class="mt-2">2026-02-10 ~ 2026-02-11 | 武汉·华中会展中心</p>
-            <p class="mt-1">华中地区最大规模娃偶主题活动 | 票价¥399限时报名</p>
-        </div>
-    </section>
+<!-- 首页Banner -->
+<div class="banner">
+  <h2>热门活动专属通道 · 限时特惠399元</h2>
+</div>
 
-    <!-- 活动详情 -->
-    <section id="activity" class="py-8 container">
-        <h2 class="text-center text-primary fw-bold mb-6">活动详情</h2>
-        <div class="row gap-6">
-            <div class="col-md-4 text-center">
-                <h5 class="fw-bold">时间</h5>
-                <p class="text-muted">2026-02-10 ~ 2026-02-11（周末两日）</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <h5 class="fw-bold">地点</h5>
-                <p class="text-muted">中国·武汉·华中会展中心（地铁2号线直达）</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <h5 class="fw-bold">活动亮点</h5>
-                <p class="text-muted">主题展区 | 娃偶交流 | 限定周边 | 互动体验</p>
-            </div>
-        </div>
-    </section>
+<!-- 首页内容区 -->
+<div class="container">
+  <section class="section">
+    <h3>活动介绍</h3>
+    <p>本次活动为专属限定场次，包含独家权益与现场福利，支持微信、支付宝快速支付，购票成功后凭支付凭证兑换入场资格，名额有限，先到先得！</p>
+    <!-- 购票按钮（嵌入首页内容区，无缝衔接） -->
+    <button class="tps_btn" onclick="document.getElementById('tps_orderModal').style.display='block'">立即购票（399元）</button>
+  </section>
 
-    <!-- 购票区域（票价已改为¥399） -->
-    <section id="tickets" class="py-8 bg-light">
-        <div class="container">
-            <h2 class="text-center text-primary fw-bold mb-6">立即报名（限时票价¥399）</h2>
-            <div class="row gap-4 justify-content-center">
-                <div class="col-md-5 ticket-card card shadow-sm p-4">
-                    <h5 class="card-title text-primary fw-bold">华中“娃”偶doll only</h5>
-                    <p class="card-text">两日通票（含所有展区+互动体验）</p>
-                    <p class="text-primary fw-bold fs-4">¥399</p>
-                    <button class="btn btn-primary w-100 mt-3" onclick="openBuyModal()">立即购票</button>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section class="section">
+    <h3>购票须知</h3>
+    <p>1. 购票后不支持退款，可转让，请谨慎下单；</p>
+    <p>2. 支付成功后请保存支付截图，作为入场凭证；</p>
+    <p>3. 活动时间：请以官方通知为准，逾期未使用视为自动放弃；</p>
+    <p>4. 如有疑问，可联系客服：400-xxxx-xxxx。</p>
+  </section>
+</div>
 
-    <!-- 我的订单 -->
-    <section id="orders" class="py-8 container">
-        <h2 class="text-center text-primary fw-bold mb-6">我的订单</h2>
-        <div id="orderList" class="row">
-            <div class="col-12 text-center py-8 text-muted" id="noOrder">
-                暂无订单，快去选购门票吧～
-            </div>
-        </div>
-    </section>
+<!-- 购票支付模块（无缝嵌入首页，与首页样式衔接） -->
+<!-- 订单确认弹窗 -->
+<div id="tps_orderModal" class="tps_modal">
+  <div class="tps_modal-content">
+    <h3 style="margin:0 0 20px 0;">订单确认</h3>
+    <p style="font-size:18px; margin:10px 0;">活动票价：399元/人</p>
+    <p style="color:#666; margin:10px 0;">购票后不支持退款，敬请谅解</p>
+    <button class="tps_pay-btn" style="background:#07C160; color:white;" onclick="document.getElementById('tps_orderModal').style.display='none'; document.getElementById('tps_wechatModal').style.display='block'">微信支付</button>
+    <button class="tps_pay-btn" style="background:#1677FF; color:white;" onclick="document.getElementById('tps_orderModal').style.display='none'; document.getElementById('tps_alipayModal').style.display='block'">支付宝支付</button>
+    <button class="tps_close-btn" onclick="document.getElementById('tps_orderModal').style.display='none'">取消</button>
+  </div>
+</div>
 
-    <!-- 购票模态框 -->
-    <div class="modal fade" id="buyModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-primary">华中“娃”偶doll only 购票</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="buyForm">
-                        <div class="mb-3">
-                            <label class="form-label">购票数量</label>
-                            <input type="number" class="form-control" id="ticketNum" min="1" value="1">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">联系人</label>
-                            <input type="text" class="form-control" id="contactName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">联系电话</label>
-                            <input type="tel" class="form-control" id="contactPhone" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">确认购票（¥399/张）</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- 微信支付弹窗（真实收款码） -->
+<div id="tps_wechatModal" class="tps_modal">
+  <div class="tps_modal-content">
+    <h3 style="margin:0 0 15px 0; color:#07C160;">微信支付</h3>
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJYBjAMBIgACEQEDEQH/xAAcAAABAAAAAAAABAAAAAQADAAgEDAgQFBgcICQoL/xAC1AAABAwMDAwUFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALIRAAMBAQEBAQEBAQEBAQAAAAAAAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+ijK" 
+         class="tps_qrcode" alt="微信支付">
+    <p style="margin:0 0 15px 0;">扫描二维码支付399元</p>
+    <p style="font-size:14px; color:#666; margin:10px 0;">支付成功后请保存截图</p>
+    <button class="tps_close-btn" onclick="document.getElementById('tps_wechatModal').style.display='none'">关闭</button>
+  </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+<!-- 支付宝支付弹窗（真实收款码） -->
+<div id="tps_alipayModal" class="tps_modal">
+  <div class="tps_modal-content">
+    <h3 style="margin:0 0 15px 0; color:#1677FF;">支付宝支付</h3>
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJYBjAMBIgACEQEDEQH/xAAcAAABAAAAAAAABAAAAAQADAAgEDAgQFBgcICQoL/xAC1AAABAwMDAwUFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALIRAAMBAQEBAQEBAQEBAQAAAAAAAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+ijK" 
+         class="tps_qrcode" alt="支付宝支付">
+    <p style="margin:0 0 15px 0;">扫描二维码支付399元</p>
+    <p style="font-size:14px; color:#666; margin:10px 0;">支付成功后请保存截图</p>
+    <button class="tps_close-btn" onclick="document.getElementById('tps_alipayModal').style.display='none'">关闭</button>
+  </div>
+</div>
+
+<!-- 底部版权 -->
+<footer style="background:#333; color:white; text-align:center; padding:20px 0; margin-top:30px;">
+  <p>© 2025 官方购票平台 版权所有 | 备案号：粤ICP备xxxx号</p>
+</footer>
 </body>
 </html>
